@@ -1,17 +1,15 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
+const app = express()
+const PORT = 3000
 
 mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/updscholarships_db')
 
-const app = express()
-const PORT = 3000
-
 const ScholarshipRouter = require('./routes/ScholarshipRouter')
 
 app.set('view engine', 'ejs')
-
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
