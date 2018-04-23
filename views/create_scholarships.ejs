@@ -11,10 +11,10 @@
 <body>
     <div class="container">
         <h1>Add Scholarship</h1>
-        <form action="POST" action="/scholarships/post">
+        <form method="POST" action="/scholarships/post">
             <div class="form-group">
-                <label for="">Scholarship Name</label>
-                <input type="text" class="form-control" class="scholarship_name">
+                <label for="item">Scholarship Name</label>
+                <input type="text" class="form-control" name="name">
             </div>
             <button type="submit" class="btn btn-primary">Add Scholarship</button>
         </form>
