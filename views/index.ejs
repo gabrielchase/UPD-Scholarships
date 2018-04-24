@@ -1,9 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-    <% include ./partials/head %>
-    <body>
-        <h1>UPD Scholarships</h1>
+<% include ./partials/head %>
 
-        <% include ./partials/scripts %>
-    </body>
+<body>
+    <div class="container">
+        <h1>UPD Scholarships</h1>
+        <br>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>Scholarship Name</td>
+                    <td>Offering Unit</td>    
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0; i<scholarships.length; i++) { %>
+                    <tr>
+                        <td><%= scholarships[i].name %></td>
+                        <td><%= scholarships[i].offering_unit %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <% include ./partials/scripts %>
+</body>
+
 </html>
