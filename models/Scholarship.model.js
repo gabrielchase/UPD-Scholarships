@@ -5,6 +5,9 @@ const Scholarship = new Schema({
     name: {
         type: String
     },
+    offering_unit: {
+        type: String
+    },
     minimum_gwa: {
         type: Number
     },
