@@ -5,12 +5,15 @@ const _ = require('lodash')
 const ScholarshipRouter = express.Router()
 const Scholarship = require('../models/Scholarship.model')
 
+const { COURSES } = require('../courses')
+
 ScholarshipRouter.route('/').get(async function(req, res) {
     let query = {}
     let context = {
         scholarships: [],
         name: req.query.name,
-        gwa: req.query.gwa
+        gwa: req.query.gwa,
+        courses: COURSES
     }
 
     if (context.name) {
