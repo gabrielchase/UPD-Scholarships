@@ -19,9 +19,9 @@
                 <div class="form-inline col-auto">
                     <label for=""><strong>Course: </strong></label>
                     <select name="course" class="form-control mx-sm-1" name="" id="">
-                        <option value=""></option>
+                        <option value="<%= course %>"><%= course %></option>
                         <% for(let i = 0; i < courses.length; i++) { %> 
-                            <option value=<%= courses[i] %>> <%= courses[i] %> </option>
+                            <option value="<%= courses[i] %>"> <%= courses[i] %> </option>
                         <% } %>
                     </select>
                 </div>

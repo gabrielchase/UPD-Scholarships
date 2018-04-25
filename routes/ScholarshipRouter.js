@@ -13,6 +13,7 @@ ScholarshipRouter.route('/').get(async function(req, res) {
         scholarships: [],
         name: req.query.name,
         gwa: req.query.gwa,
+        course: req.query.course,
         courses: COURSES
     }
 
@@ -22,6 +23,10 @@ ScholarshipRouter.route('/').get(async function(req, res) {
 
     if (context.gwa) {
         query.minimum_gwa = {$gte: context.gwa}
+    }
+
+    if (context.course) {
+        query.exclusive_courses = context.course
     }
 
     let scholarships = await Scholarship.find(query)
