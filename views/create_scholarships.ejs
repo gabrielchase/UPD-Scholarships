@@ -75,6 +75,18 @@
                     <label for="">Total Receiable Amount Per Year (in PHP):</label>
                     <input type="number" class="form-control" name="total_receivable">
                 </div>
+                <label>Courses this Scholarship Applies to: </label> 
+                <button class="btn btn-primary float-right" id="add-course">Add Course</button>
+                <div id="scholarship-course-list">
+                    <select name="course" class="form-control mx-sm-1" name="" id="">
+                        <option value=""></option>
+                        <% for(let i = 0; i < courses.length; i++) { %> 
+                            <option name="exclusive_course" value=<%= courses[i] %>> <%= courses[i] %> </option>
+                        <% } %>
+                    </select>
+                </div>
+                <br>
+                <br>
                 <div class="form-group">
                     <label for="">Additional Information:</label>
                     <textarea class="form-control" name="additional_information" rows="4"></textarea>
