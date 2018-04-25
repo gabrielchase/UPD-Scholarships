@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include ./partials/head %>
+
+<body>
+    <div class="container">
+        <p><%= scholarship.name %></p>
+        <p><%= scholarship.offering_unit %></p>
+        <p><%= scholarship.minimum_gwa %></p>
+        <p><%= scholarship.minimum_units_required %></p>
+        <p>4.00: <%= scholarship.allowed_bad_grades['4'] %></p>
+        <p>5.00: <%= scholarship.allowed_bad_grades['5'] %></p>
+        <p>DROP: <%= scholarship.allowed_bad_grades['drop'] %></p>
+        <p>INC: <%= scholarship.allowed_bad_grades['inc'] %></p>
+        <p><%= scholarship.total_receivable %></p>
+        <p><%= scholarship.additional_information %></p>
+    </div>
+</body>
+
+</html>

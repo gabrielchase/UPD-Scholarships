@@ -29,4 +29,10 @@ ScholarshipRouter.route('/post').post(function(req, res) {
         })
 })
 
+ScholarshipRouter.route('/:id').get(async function(req, res) {
+    const id = req.params.id
+    const scholarship = await Scholarship.findById(id)
+    res.render('detail_scholarship', {scholarship: scholarship})
+})
+
 module.exports = ScholarshipRouter
