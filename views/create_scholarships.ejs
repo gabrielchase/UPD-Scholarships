@@ -78,10 +78,10 @@
                 <label>Courses this Scholarship Applies to: </label> 
                 <button class="btn btn-primary float-right" id="add-course">Add Course</button>
                 <div id="scholarship-course-list">
-                    <select name="course" class="form-control mx-sm-1" name="" id="">
+                    <select name="exclusive_courses" class="form-control mx-sm-1" name="" id="">
                         <option value=""></option>
                         <% for(let i = 0; i < courses.length; i++) { %> 
-                            <option name="exclusive_course" value=<%= courses[i] %>> <%= courses[i] %> </option>
+                            <option value=<%= courses[i] %>> <%= courses[i] %> </option>
                         <% } %>
                     </select>
                 </div>

@@ -35,6 +35,9 @@ const Scholarship = new Schema({
     total_receivable: {
         type: Number
     },
+    exclusive_courses: {
+        type: [String]
+    },
     additional_information: {
         type: String
     }

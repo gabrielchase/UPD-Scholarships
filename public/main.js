@@ -19,7 +19,7 @@ let courses = [
 
 $("#add-course").click(function(e) {
     e.preventDefault()
-    let options = '<select name="course" class="form-control mx-sm-1"><option value=""></option>'
+    let options = '<select name="exclusive_courses" class="form-control mx-sm-1"><option value=""></option>'
     for(let course of courses) {
         options += '<option value="'+ course + '">' + course + '</option>';
     }
