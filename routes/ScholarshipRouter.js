@@ -7,29 +7,15 @@ const Scholarship = require('../models/Scholarship.model')
 
 ScholarshipRouter.route('/').get(async function(req, res) {
     let context = {}
-    let scholarships = []
+    let query = {}
+    let name = req.query.name
 
-    if (_.isEmpty(req.query)) {
-        try {
-            console.log('in here')
-            scholarships = await Scholarship.find()
-        } catch(err) {
-            console.log(err)
-        }   
+    if (name) {
+        context.name = name
+        query.name =  {$regex: name, $options: 'i'}
     }
-    
-    if (req.query) {
-        try {
-            let name = req.query.name
-            context.name = name
-            
-            if (name) {
-                scholarships = await Scholarship.find({name: {$regex: name, $options: 'i'}})
-            }
-        } catch(err) {
-            console.log(err)
-        }
-    }
+
+    let scholarships = await Scholarship.find(query)
 
     if (scholarships) {
         context.scholarships = scholarships
