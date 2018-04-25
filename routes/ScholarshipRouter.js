@@ -1,15 +1,41 @@
 const express = require('express')
 const app = express()
+const _ = require('lodash')
 
 const ScholarshipRouter = express.Router()
 const Scholarship = require('../models/Scholarship.model')
 
 ScholarshipRouter.route('/').get(async function(req, res) {
-    const scholarships = await Scholarship.find()
+    let context = {}
+    let scholarships = []
+
+    if (_.isEmpty(req.query)) {
+        try {
+            console.log('in here')
+            scholarships = await Scholarship.find()
+        } catch(err) {
+            console.log(err)
+        }   
+    }
+    
+    if (req.query) {
+        try {
+            let name = req.query.name
+            context.name = name
+            
+            if (name) {
+                scholarships = await Scholarship.find({name: {$regex: name, $options: 'i'}})
+            }
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
     if (scholarships) {
-        res.render('index', {scholarships: scholarships})
+        context.scholarships = scholarships
+        res.render('index', context)
     } else {
-        console.log(err)
+        console.log('bad')
     }
 })
 
