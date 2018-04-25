@@ -4,14 +4,13 @@ const app = express()
 const ScholarshipRouter = express.Router()
 const Scholarship = require('../models/Scholarship.model')
 
-ScholarshipRouter.route('/').get(function(req, res) {
-    Scholarship.find(function(err, scholarships) {
-        if (err) {
-            console.log(err)
-        } else {
-            res.render('index', {scholarships: scholarships})
-        }
-    })
+ScholarshipRouter.route('/').get(async function(req, res) {
+    const scholarships = await Scholarship.find()
+    if (scholarships) {
+        res.render('index', {scholarships: scholarships})
+    } else {
+        console.log(err)
+    }
 })
 
 ScholarshipRouter.route('/create').get(function(req, res) {
