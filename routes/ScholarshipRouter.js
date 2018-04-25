@@ -6,19 +6,19 @@ const ScholarshipRouter = express.Router()
 const Scholarship = require('../models/Scholarship.model')
 
 ScholarshipRouter.route('/').get(async function(req, res) {
-    let context = {}
     let query = {}
-    let name = req.query.name
-    let gwa = req.query.gwa
-
-    if (name) {
-        context.name = name
-        query.name = {$regex: name, $options: 'i'}
+    let context = {
+        scholarships: [],
+        name: req.query.name,
+        gwa: req.query.gwa
     }
 
-    if (gwa) {
-        context.gwa = gwa
-        query.minimum_gwa = {$gte: gwa}
+    if (context.name) {
+        query.name = {$regex: context.name, $options: 'i'}
+    }
+
+    if (context.gwa) {
+        query.minimum_gwa = {$gte: context.gwa}
     }
 
     let scholarships = await Scholarship.find(query)
