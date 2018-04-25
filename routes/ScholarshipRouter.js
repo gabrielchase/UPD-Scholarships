@@ -35,7 +35,7 @@ ScholarshipRouter.route('/').get(async function(req, res) {
 })
 
 ScholarshipRouter.route('/create').get(function(req, res) {
-    res.render('create_scholarships')
+    res.render('create_scholarships', {courses: COURSES})
 })
 
 ScholarshipRouter.route('/post').post(function(req, res) {
