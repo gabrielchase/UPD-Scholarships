@@ -44,14 +44,15 @@ ScholarshipRouter.route('/create').get(function(req, res) {
 })
 
 ScholarshipRouter.route('/post').post(function(req, res) {
-    const scholarship = new Scholarship(req.body)
-    scholarship.save()
-        .then(scholarship => {
-            res.redirect('/scholarships')        
-        })
-        .catch(err => {
-            res.status(400).send('Unable to save to the database')
-        })
+    console.log(req.body)
+    // const scholarship = new Scholarship(req.body)
+    // scholarship.save()
+    //     .then(scholarship => {
+    //         res.redirect('/scholarships')        
+    //     })
+    //     .catch(err => {
+    //         res.status(400).send('Unable to save to the database')
+    //     })
 })
 
 ScholarshipRouter.route('/:id').get(async function(req, res) {
