@@ -26,3 +26,59 @@ $("#add-course").click(function(e) {
     options += '</select>'
     $("#scholarship-course-list").append(options)
 })
+
+$('#scholarshipInputFile').on('change', function() {
+    //get the file name
+    const fileName = $(this).val()
+    console.log(fileName)
+    //replace the "Choose a file" label
+    $(this).next('.custom-file-label').html(fileName)
+    
+    // const files = document.getElementById('scholarshipInputFile').files
+    const files = $(this).prop('files')
+    const scholarshipFile = files[0]
+    console.log(scholarshipFile)
+    
+    if (scholarshipFile == null) {
+        alert('No file selected')
+    }
+
+    getSignedRequest(scholarshipFile)
+    // console.log(files)
+})
+
+function getSignedRequest(scholarshipFile) {
+    console.log('in getSignedRequest')
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', `/sign-s3?file-name=${scholarshipFile.name}&file-type=${scholarshipFile.type}`)
+    xhr.onreadystatechange = () => {
+        console.log(xhr)
+        console.log(xhr.responseText)
+        console.log(xhr.readyState)
+        console.log(xhr.status)
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText)
+                console.log(response)
+                uploadFile(scholarshipFile, response.signedRequest, response.url)
+            } else {
+                alert('Could not get signed URL')
+            }
+        }
+    }
+    xhr.send()
+}
+
+function uploadFile(scholarshipFile, signedRequest, url) {
+    console.log('in uploadFile')
+    const xhr = new XMLHttpRequest()
+    xhr.open('PUT', signedRequest)
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                console.log('put good')
+            }
+        }
+    }
+    xhr.send(scholarshipFile)
+}
