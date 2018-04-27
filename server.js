@@ -2,7 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/updscholarships_db'
 
 mongoose.Promise = global.Promise
