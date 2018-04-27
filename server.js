@@ -3,9 +3,10 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 const app = express()
 const PORT = 3000
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/updscholarships_db'
 
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost/updscholarships_db')
+mongoose.connect(mongoUri)
 
 const ScholarshipRouter = require('./routes/ScholarshipRouter')
 
