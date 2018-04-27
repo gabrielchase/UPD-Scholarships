@@ -91,9 +91,17 @@
                     <label for="">Additional Information:</label>
                     <textarea class="form-control" name="additional_information" rows="4"></textarea>
                 </div>
+                <label>Scholarship PDF File: </label>
+                <div class="form-group custom-file" id="customFile" lang="es">
+                    <input type="file" class="custom-file-input" id="scholarshipInputFile" aria-describedby="fileHelp">
+                    <label name="scholarship-file" class="custom-file-label" for="scholarshipInputFile">Select file...</label>
+                </div>
+                <br>
+                <br>
                 <div>
                     <button type="submit" class="btn btn-primary">Add Scholarship</button>
                 </div>
+                <br>
             </form>
         </div>
         <% include ./partials/scripts %>
