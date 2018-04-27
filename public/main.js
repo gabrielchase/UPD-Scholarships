@@ -43,7 +43,8 @@ $('#scholarshipInputFile').on('change', function() {
         alert('No file selected')
     }
 
-    getSignedRequest(scholarshipFile)
+    const url = getSignedRequest(scholarshipFile)
+    console.log('final_url: ', url)
     // console.log(files)
 })
 
@@ -52,15 +53,11 @@ function getSignedRequest(scholarshipFile) {
     const xhr = new XMLHttpRequest()
     xhr.open('GET', `/sign-s3?file-name=${scholarshipFile.name}&file-type=${scholarshipFile.type}`)
     xhr.onreadystatechange = () => {
-        console.log(xhr)
-        console.log(xhr.responseText)
-        console.log(xhr.readyState)
-        console.log(xhr.status)
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 const response = JSON.parse(xhr.responseText)
                 console.log(response)
-                uploadFile(scholarshipFile, response.signedRequest, response.url)
+                return uploadFile(scholarshipFile, response.signedRequest, response.url)
             } else {
                 alert('Could not get signed URL')
             }
@@ -80,5 +77,6 @@ function uploadFile(scholarshipFile, signedRequest, url) {
             }
         }
     }
-    xhr.send(scholarshipFile)
+    await xhr.send(scholarshipFile)
+    return url
 }
