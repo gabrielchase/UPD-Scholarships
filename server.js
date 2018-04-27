@@ -1,9 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
+const aws = require('aws-sdk');
 const app = express()
+
+aws.config.region = 'ap-southeast-1'
 const PORT = process.env.PORT || 3000
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/updscholarships_db'
+const S3_BUCKET = process.env.S3_BUCKET;
 
 mongoose.Promise = global.Promise
 mongoose.connect(mongoUri)
