@@ -40,6 +40,12 @@ const Scholarship = new Schema({
     },
     additional_information: {
         type: String
+    },
+    file_link: {
+        type: String
+    },
+    detail_link: {
+        type: String
     }
 },{
     collection: 'scholarships'
