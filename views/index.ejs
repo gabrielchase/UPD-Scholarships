@@ -42,7 +42,7 @@
             <tbody>
                 <% for(let i = 0; i < scholarships.length; i++) { %>
                     <tr>
-                        <td><%= scholarships[i].name %></td>
+                        <td><a href="<%=scholarships[i].detail_link%>"><%= scholarships[i].name %></a></td>
                         <td><%= scholarships[i].minimum_gwa %></td>
                         <td><%= scholarships[i].offering_unit %></td>
                     </tr>

@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const _ = require('lodash')
 
 const ScholarshipRouter = express.Router()
 const Scholarship = require('../models/Scholarship.model')
@@ -47,9 +46,11 @@ ScholarshipRouter.route('/post').post(async function(req, res) {
     try {
         const scholarship = new Scholarship(req.body)
         await scholarship.save()
-        scholarship.detail_link = `/scholarships/${scholarship._id}`
-        res.redirect(scholarship.detail_link)        
+        const detail_link = `/scholarships/${scholarship._id}`
+        await Scholarship.update({_id: scholarship._id}, {detail_link: detail_link})
+        res.redirect(detail_link)        
     } catch (err) {
+        console.log(err)
         res.status(400).send('Unable to save to the database')
     }
 })
