@@ -28,36 +28,32 @@ $("#add-course").click(function(e) {
 })
 
 $('#scholarshipInputFile').on('change', function() {
-    //get the file name
     const fileName = $(this).val()
-    console.log(fileName)
-    //replace the "Choose a file" label
     $(this).next('.custom-file-label').html(fileName)
-    
-    // const files = document.getElementById('scholarshipInputFile').files
-    const files = $(this).prop('files')
+})
+
+$('#scholarship-form').submit((e) => {
+    e.preventDefault()
+    const files = $('#scholarshipInputFile').prop('files')
     const scholarshipFile = files[0]
-    console.log(scholarshipFile)
     
     if (scholarshipFile == null) {
         alert('No file selected')
     }
 
-    const url = getSignedRequest(scholarshipFile)
-    console.log('final_url: ', url)
-    // console.log(files)
+    getSignedRequest(scholarshipFile)
+    
 })
 
 function getSignedRequest(scholarshipFile) {
-    console.log('in getSignedRequest')
     const xhr = new XMLHttpRequest()
     xhr.open('GET', `/sign-s3?file-name=${scholarshipFile.name}&file-type=${scholarshipFile.type}`)
-    xhr.onreadystatechange = () => {
+    xhr.onreadystatechange = async () => {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 const response = JSON.parse(xhr.responseText)
-                console.log(response)
-                return uploadFile(scholarshipFile, response.signedRequest, response.url)
+                console.log('response: ', response)
+                uploadFile(scholarshipFile, response.signedRequest, response.url, response.downloadUrl)
             } else {
                 alert('Could not get signed URL')
             }
@@ -66,17 +62,16 @@ function getSignedRequest(scholarshipFile) {
     xhr.send()
 }
 
-function uploadFile(scholarshipFile, signedRequest, url) {
-    console.log('in uploadFile')
+function uploadFile(scholarshipFile, signedRequest, url, downloadUrl) {
     const xhr = new XMLHttpRequest()
     xhr.open('PUT', signedRequest)
     xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-                console.log('put good')
+                $('[name=file_link]').val(downloadUrl)
+                $('#scholarship-form').unbind('submit').submit()
             }
         }
     }
-    await xhr.send(scholarshipFile)
-    return url
+    xhr.send(scholarshipFile)
 }
