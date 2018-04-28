@@ -1,3 +1,5 @@
+$body = $("body");
+
 let courses = [
     'Anthropology', 'Applied Physics', 'Applied Psychology', 'Araling Pilipino', 'Architecture', 'Art Education', 'Art History',
     'Art Studies (Art History)', 'Art Studies (Interdisciplinary)', 'Art Studies (Philippine Art)','Biology', 
@@ -42,7 +44,7 @@ $('#scholarship-form').submit((e) => {
     }
 
     getSignedRequest(scholarshipFile)
-    
+    $body.addClass("loading");
 })
 
 function getSignedRequest(scholarshipFile) {
@@ -70,6 +72,7 @@ function uploadFile(scholarshipFile, signedRequest, url, downloadUrl) {
             if (xhr.status === 200) {
                 $('[name=file_link]').val(downloadUrl)
                 $('#scholarship-form').unbind('submit').submit()
+                $body.removeClass("loading");
             }
         }
     }
