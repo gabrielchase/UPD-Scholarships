@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 
 app.get('/sign-s3', (req, res) => {
     const s3 = new aws.S3()
-    const fileName = req.query['file-name'].replace(/ /g,'+')
+    const fileName = req.query['file-name'].replace(/ /g,'-')
     const fileType = req.query['file-type']
     const s3Params = {
         Bucket: S3_BUCKET,
@@ -43,7 +43,6 @@ app.get('/sign-s3', (req, res) => {
             console.log(err)
             return res.end()
         } 
-        console.log(data)
         const returnedData = {
             signedRequest: data,
             url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`,
@@ -52,7 +51,6 @@ app.get('/sign-s3', (req, res) => {
         res.write(JSON.stringify(returnedData))
         res.end()
     })
-
 })
 
 app.listen(PORT, () => {
