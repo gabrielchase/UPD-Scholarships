@@ -19,7 +19,7 @@
                 <div class="form-inline col-auto">
                     <label for=""><strong>Course: </strong></label>
                     <select name="course" class="form-control mx-sm-1" name="" id="">
-                        <% if (course) { %>
+                        <% if (course && course != 'Any Course') { %>
                             <option value="<%= course %>"><%= course %></option>
                             <option value="Any Course">Any Course</option>
                         <% } else { %>
