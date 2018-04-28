@@ -24,7 +24,7 @@ ScholarshipRouter.route('/').get(async function(req, res) {
         query.minimum_gwa = {$gte: context.gwa}
     }
 
-    if (context.course) {
+    if (context.course || context.course != 'Any Course') {
         query.exclusive_courses = context.course
     }
 
