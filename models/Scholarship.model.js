@@ -16,20 +16,16 @@ const Scholarship = new Schema({
     },
     allowed_bad_grades: {
         4: {
-            type: Boolean,
-            default: true
+            type: Boolean
         },
         5: {
-            type: Boolean,
-            default: true
+            type: Boolean
         },
         drop: {
-            type: Boolean,
-            default: true
+            type: Boolean
         },
         inc: {
-            type: Boolean,
-            default: true
+            type: Boolean
         }
     },
     total_receivable: {
