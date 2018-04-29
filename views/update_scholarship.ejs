@@ -87,7 +87,7 @@
                             <% } %>
                         </select>
                     <% } %>
-                    <% if scholarship.exclusive_courses.length === 0 { %>
+                    <% if (scholarship.exclusive_courses.length === 0) { %>
                         <select name="exclusive_courses" class="form-control mx-sm-1" name="" id="">
                             <option value="Any Course">Any Course</option>
                             <% for(let i = 0; i < courses.length; i++) { %> 
