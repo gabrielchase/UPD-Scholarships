@@ -66,4 +66,18 @@ ScholarshipRouter.route('/:id').get(async function(req, res) {
     res.render('detail_scholarship', {scholarship: scholarship})
 })
 
+ScholarshipRouter.route('/:id/edit').get(async function(req, res) {
+    const id = req.params.id
+    const scholarship = await Scholarship.findById(id)
+    // console.log(scholarship.allowed_bad_grades['4'])
+    res.render('update_scholarship', {scholarship: scholarship, courses: COURSES})
+})
+
+ScholarshipRouter.route('/:id/update').post(async function(req, res) {
+    const id = req.params.id
+    const scholarship = await Scholarship.findById(id)
+    console.log(req.body)
+    // res.render('detail_scholarship', {scholarship: scholarship})
+})
+
 module.exports = ScholarshipRouter
