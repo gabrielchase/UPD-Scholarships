@@ -5,7 +5,14 @@
 <body>
     <div class="container">
         <% include ./partials/navbar %>
-        <h1><%= scholarship.name %></h1>
+        <div class="row">
+            <div class="col-10">
+                <h1 class="text-left col-9"><%= scholarship.name %></h1>
+            </div>
+            <div class="col-2">
+                <a href="<%= scholarship.detail_link %>/edit %>" class="btn btn-primary btn-md" role="button">Edit this Scholarship</a>
+            </div>
+        </div>
         <p>Offering Unit: <%= scholarship.offering_unit %></p>
         <p>Minumum GWA Required: <%= scholarship.minimum_gwa %></p>
         <p>Minumum Number of Units Required: <%= scholarship.minimum_units_required %></p>
@@ -19,7 +26,7 @@
         <p>Total Receiable Amount per Year: <%= scholarship.total_receivable %></p>
         <p>Exclusive to the following courses: <%= scholarship.exclusive_courses.join(', ') %></p>
         <p>Additional Information: <%= scholarship.additional_information %></p>
-        <a href="<%= scholarship.file_link %>">Download File Here</a>
+        <p> Scholarship File: <a href="<%= scholarship.file_link %>">View Here</a> </p>
     </div>
 </body>
 
