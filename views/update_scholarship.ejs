@@ -5,7 +5,7 @@
         <div class="container">
             <% include ./partials/navbar %>
             <h1>Update Scholarship</h1>
-            <form method="POST" action="/scholarships/post" id="scholarship-form">
+            <form method="POST" action="<%= update_link %>" id="scholarship-form">
                 <div class="form-group">
                     <label for="item">Scholarship Name:</label>
                     <input type="text" class="form-control" name="name" value="<%= scholarship.name %>">
@@ -102,10 +102,10 @@
                     <label for="">Additional Information:</label>
                     <textarea class="form-control" name="additional_information" rows="4"><%= scholarship.additional_information %></textarea>
                 </div>
-                <label>Scholarship PDF File: </label>
+                <label>Scholarship PDF File: <a href="<%= scholarship.file_link %>"><%= scholarship.file_link %></a></label>
                 <div class="form-group custom-file" id="customFile" lang="es">
                     <input type="file" class="custom-file-input" id="scholarshipInputFile" aria-describedby="fileHelp">
-                    <label name="scholarship-file" class="custom-file-label" for="scholarshipInputFile">Select file...</label>
+                    <label name="scholarship-file" class="custom-file-label" for="scholarshipInputFile">Click here to edit file...</label>
                 </div>
                 <input type="hidden" id="scholarshipInputFileLink" name="file_link" value="">
                 <br>

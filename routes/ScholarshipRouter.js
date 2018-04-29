@@ -53,7 +53,7 @@ ScholarshipRouter.route('/post').post(async function(req, res) {
         await scholarship.save()
         const detail_link = `/scholarships/${scholarship._id}`
         await Scholarship.update({_id: scholarship._id}, {detail_link: detail_link})
-        res.redirect(detail_link)        
+        res.redirect(detail_link)
     } catch (err) {
         console.log(err)
         res.status(400).send('Unable to save to the database')
@@ -69,15 +69,20 @@ ScholarshipRouter.route('/:id').get(async function(req, res) {
 ScholarshipRouter.route('/:id/edit').get(async function(req, res) {
     const id = req.params.id
     const scholarship = await Scholarship.findById(id)
-    // console.log(scholarship.allowed_bad_grades['4'])
-    res.render('update_scholarship', {scholarship: scholarship, courses: COURSES})
+    const update_link = `/scholarships/${scholarship._id}/update`
+    res.render('update_scholarship', {scholarship: scholarship, courses: COURSES, update_link: update_link})
 })
 
 ScholarshipRouter.route('/:id/update').post(async function(req, res) {
-    const id = req.params.id
-    const scholarship = await Scholarship.findById(id)
-    console.log(req.body)
-    // res.render('detail_scholarship', {scholarship: scholarship})
+    try {
+        const id = req.params.id
+        await Scholarship.update({_id: id}, req.body)
+        const detail_link = `/scholarships/${id}/`
+        res.redirect(detail_link)
+    }  catch (err) {
+        console.log(err)
+        res.status(400).send('Unable update the scholarship')
+    }
 })
 
 module.exports = ScholarshipRouter
