@@ -5,16 +5,20 @@
 <body>
     <div class="container">
         <% include ./partials/navbar %>
-        <p><%= scholarship.name %></p>
-        <p><%= scholarship.offering_unit %></p>
-        <p><%= scholarship.minimum_gwa %></p>
-        <p><%= scholarship.minimum_units_required %></p>
-        <p>4.00: <%= scholarship.allowed_bad_grades['4'] %></p>
-        <p>5.00: <%= scholarship.allowed_bad_grades['5'] %></p>
-        <p>DROP: <%= scholarship.allowed_bad_grades['drop'] %></p>
-        <p>INC: <%= scholarship.allowed_bad_grades['inc'] %></p>
-        <p><%= scholarship.total_receivable %></p>
-        <p><%= scholarship.additional_information %></p>
+        <h1><%= scholarship.name %></h1>
+        <p>Offering Unit: <%= scholarship.offering_unit %></p>
+        <p>Minumum GWA Required: <%= scholarship.minimum_gwa %></p>
+        <p>Minumum Number of Units Required: <%= scholarship.minimum_units_required %></p>
+        <p>Allowed Grades:</p>
+        <ul>
+            <li>4.00: <%= scholarship.allowed_bad_grades['4'] %></li>
+            <li>5.00: <%= scholarship.allowed_bad_grades['5'] %></li>
+            <li>DROP: <%= scholarship.allowed_bad_grades['drop'] %></li>
+            <li>INC: <%= scholarship.allowed_bad_grades['inc'] %></li>
+        </ul>
+        <p>Total Receiable Amount per Year: <%= scholarship.total_receivable %></p>
+        <p>Exclusive to the following courses: <%= scholarship.exclusive_courses.join(', ') %></p>
+        <p>Additional Information: <%= scholarship.additional_information %></p>
         <a href="<%= scholarship.file_link %>">Download File Here</a>
     </div>
 </body>
