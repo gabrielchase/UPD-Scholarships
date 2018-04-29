@@ -13,6 +13,7 @@ ScholarshipRouter.route('/').get(async function(req, res) {
         name: req.query.name,
         gwa: req.query.gwa,
         course: req.query.course,
+        amount_required: req.query.amount_required,
         courses: COURSES
     }
 
@@ -22,6 +23,10 @@ ScholarshipRouter.route('/').get(async function(req, res) {
 
     if (context.gwa) {
         query.minimum_gwa = {$gte: context.gwa}
+    }
+
+    if (context.amount_required) {
+        query.total_receivable = {$gte: context.amount_required}
     }
 
     if (context.course && context.course != 'Any Course') {
