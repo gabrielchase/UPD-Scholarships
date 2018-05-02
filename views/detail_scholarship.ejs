@@ -30,12 +30,12 @@
                 <p><strong>Total Receiable Amount per Year:</strong> <%= scholarship.total_receivable %></p>
                 <p><strong>Exclusive to the following courses:</strong> <%= scholarship.exclusive_courses.join(', ') %></p>
                 <p><strong>Additional Information:</strong> <%= scholarship.additional_information %></p>
-                <p><a href="<%= scholarship.file_link %>">View Scholarship File</a></p>
             </div>
             <div class="col-6">
+                <p><strong>Preview: </strong></p>
                 <iframe src="<%= scholarship.file_link %>" style="width: 100%;height: 100%;border: none;"></iframe>
+                <p><a href="<%= scholarship.file_link %>">View Full Scholarship File</a></p>
             </div>
-
     </div>
 </body>
 
